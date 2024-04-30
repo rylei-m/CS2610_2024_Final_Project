@@ -7,5 +7,10 @@ export default defineConfig({
   build: {
     outDir: '../path_to_django/static/react', // Output directory for build files
     emptyOutDir: true, // Clean this directory every build
+  },
+  server: {
+  proxy: {
+    '/api': 'http://localhost:5173', // Assuming Django runs on this port
+    }
   }
 });
