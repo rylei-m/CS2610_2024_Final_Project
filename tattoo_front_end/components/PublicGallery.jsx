@@ -1,17 +1,4 @@
-import React, { useContext } from 'react';
-import { StateContext } from './StateContext';
-
-const MyComponent = () => {
-  const { state, dispatch } = useContext(StateContext);
-
-  // Now you can use state and dispatch here
-
-  return (
-    // Your component JSX
-  );
-};
-
-export default MyComponent;
+import React from 'react';
 
 function PublicGallery({ tattoos, isAuthenticated }) {
   return (

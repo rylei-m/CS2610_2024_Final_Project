@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../layout/Navbar'; // Adjust the import path as needed
-import PublicGallery from './layout/PublicGallery'; // Adjust the import path as needed
-import SignupForm from './layout/SignupForm'; // Adjust the import path as needed
-import UploadTattooForm from './layout/UploadTattooForm'; // Adjust the import path as needed
-import UserTattoos from './layout/UserTattoos'; // Adjust the import path as needed
+import Navbar from '../components/Navbar'; // Adjust the import path as needed
+import PublicGallery from '../components/PublicGallery'; // Adjust the import path as needed
+import SignupForm from '../components/SignupForm'; // Adjust the import path as needed
+import UploadTattooForm from '../components/UploadTattooForm'; // Adjust the import path as needed
+import UserTattoos from '../components/UserTattoos'; // Adjust the import path as needed
 import LoginForm from './LoginForm'; // Adjust the import path as needed
 import MyTattoos from './MyTattoos'; // Adjust the import path as needed
-import ConfirmDelete from './ConfirmDelete'; // Adjust the import path as needed
-import EditTattoo from './EditTattoo'; // Adjust the import path as needed
+import ConfirmDelete from '../components/ConfirmDelete'; // Adjust the import path as needed
 
 const HomePage = () => {
   const [tattoos, setTattoos] = useState([]);
@@ -42,12 +41,12 @@ const HomePage = () => {
       <div className="content">
         <LoginForm onSubmit={handleLogin} />
         <MyTattoos tattoos={tattoos} onDelete={handleDelete} />
-        {/* Pass tattoos data as props to PublicGallery and UserTattoos */}
         <PublicGallery tattoos={tattoos} />
         <SignupForm onSubmit={handleSignup} />
         <UploadTattooForm onSubmit={handleTattooUpload} csrfToken="your_csrf_token_here" />
         <UserTattoos tattoos={tattoos} />
-        <EditTattoo form={<YourFormComponent />} tattoo={selectedTattoo} />
+        {/* Pass the tattoo object to the ConfirmDelete component */}
+        <ConfirmDelete tattoo={{ id: 1, description: "Sample tattoo" }} />
       </div>
     </div>
   );

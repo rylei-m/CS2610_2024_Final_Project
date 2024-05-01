@@ -1,39 +1,46 @@
-import React, { useContext } from 'react';
-import { StateContext } from './StateContext';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../layout/Navbar'; // Adjust the import path as needed
+import PublicGallery from './layout/PublicGallery'; // Adjust the import path as needed
+import SignupForm from './layout/SignupForm'; // Adjust the import path as needed
+import UploadTattooForm from './layout/UploadTattooForm'; // Adjust the import path as needed
+import UserTattoos from './layout/UserTattoos'; // Adjust the import path as needed
+import LoginForm from './LoginForm'; // Adjust the import path as needed
 
-const MyComponent = () => {
-  const { state, dispatch } = useContext(StateContext);
+const HomePage = () => {
+  const [tattoos, setTattoos] = useState([]);
 
-  // Now you can use state and dispatch here
+  useEffect(() => {
+    // Fetch tattoos data here
+  }, []);
 
-  return (
-    // Your component JSX
-  );
-};
+  const handleSignup = (formData) => {
+    console.log('Form submitted with data:', formData);
+    // Handle signup logic here
+  };
 
-export default MyComponent;
+  const handleTattooUpload = (formData) => {
+    console.log('Tattoo form submitted with data:', formData);
+    // Handle tattoo upload logic here
+  };
 
-export function LoginForm() {
-  const login = (event) => {
-    event.preventDefault();
-    // Add login logic here
+  const handleLogin = (formData) => {
+    console.log('Login form submitted with data:', formData);
+    // Handle login logic here
   };
 
   return (
-    <div className="temps">
-      <h2>Login</h2>
-      <form id="loginForm" onSubmit={login}>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-        <button type="submit">Login</button>
-        <p></p>
-        <div className="boxes">
-          <p>Don't Have An Account?</p>
-          <button className="btn" onClick={() => { /* Handle sign up button click */ }}>Sign Up</button>
-        </div>
-      </form>
+    <div>
+      <Navbar />
+      <div className="content">
+        <LoginForm onSubmit={handleLogin} />
+        {/* Pass tattoos data as props to PublicGallery and UserTattoos */}
+        <PublicGallery tattoos={tattoos} />
+        <SignupForm onSubmit={handleSignup} />
+        <UploadTattooForm onSubmit={handleTattooUpload} csrfToken="your_csrf_token_here" />
+        <UserTattoos tattoos={tattoos} />
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;

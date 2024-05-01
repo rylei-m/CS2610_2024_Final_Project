@@ -1,36 +1,48 @@
-import React, { useContext } from 'react';
-import { StateContext } from './StateContext';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../layout/Navbar'; // Adjust the import path as needed
+import PublicGallery from './layout/PublicGallery'; // Adjust the import path as needed
+import SignupForm from './layout/SignupForm'; // Adjust the import path as needed
+import UploadTattooForm from './layout/UploadTattooForm'; // Adjust the import path as needed
+import UserTattoos from './layout/UserTattoos'; // Adjust the import path as needed
+import LoginForm from './LoginForm'; // Adjust the import path as needed
+import MyTattoos from './MyTattoos'; // Adjust the import path as needed
 
-const MyComponent = () => {
-  const { state, dispatch } = useContext(StateContext);
+const HomePage = () => {
+  const [tattoos, setTattoos] = useState([]);
 
-  // Now you can use state and dispatch here
+  useEffect(() => {
+    // Fetch tattoos data here
+  }, []);
+
+  const handleSignup = (formData) => {
+    console.log('Form submitted with data:', formData);
+    // Handle signup logic here
+  };
+
+  const handleTattooUpload = (formData) => {
+    console.log('Tattoo form submitted with data:', formData);
+    // Handle tattoo upload logic here
+  };
+
+  const handleLogin = (formData) => {
+    console.log('Login form submitted with data:', formData);
+    // Handle login logic here
+  };
 
   return (
-    // Your component JSX
+    <div>
+      <Navbar />
+      <div className="content">
+        <LoginForm onSubmit={handleLogin} />
+        <MyTattoos tattoos={tattoos} />
+        {/* Pass tattoos data as props to PublicGallery and UserTattoos */}
+        <PublicGallery tattoos={tattoos} />
+        <SignupForm onSubmit={handleSignup} />
+        <UploadTattooForm onSubmit={handleTattooUpload} csrfToken="your_csrf_token_here" />
+        <UserTattoos tattoos={tattoos} />
+      </div>
+    </div>
   );
 };
 
-export default MyComponent;
-
-export function MyTattoos({ tattoos }) {
-  return (
-    <div>
-      {tattoos.length > 0 ? (
-        <>
-          <h2>My Tattoos</h2>
-          {tattoos.map((tattoo) => (
-            <div key={tattoo.id} className="viewer">
-              <img src={tattoo.image.url} alt="Tattoo" />
-              <p>{tattoo.description}</p>
-              {/* You can replace the link with a button and handle editing logic */}
-              <a href={`edit_tattoo/${tattoo.id}`}>Edit</a>
-            </div>
-          ))}
-        </>
-      ) : (
-        <p>No tattoos available</p>
-      )}
-    </div>
-  );
-}
+export default HomePage;
