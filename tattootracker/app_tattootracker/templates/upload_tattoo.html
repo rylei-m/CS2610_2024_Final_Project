@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Upload a New Tattoo</h1>
+<!-- Modify your form or the script container to include the URL as a data attribute -->
+<div id="upload-form" data-upload-url="{% url 'upload_handler' %}">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Tattoo</button>
+    </form>
+</div>
+
+<div id="drop-area">
+  <form class="my-form">
+    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+    <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+    <label class="button" for="fileElem">Select some files</label>
+    <div id="gallery"></div>
+  </form>
+</div>
+
+<script>
+  let dropArea = document.getElementById('drop-area');
+
+  ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false)
+  });
+
+  function preventDefaults (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  ;['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false)
+  });
+
+  ;['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false)
+  });
+
+  function highlight(e) {
+    dropArea.classList.add('highlight')
+  }
+
+  function unhighlight(e) {
+    dropArea.classList.remove('highlight')
+  }
+
+  dropArea.addEventListener('drop', handleDrop, false);
+
+  function handleDrop(e) {
+    let dt = e.dataTransfer
+    let files = dt.files
+
+    handleFiles(files)
+  }
+
+  function handleFiles(files) {
+    ([...files]).forEach(uploadFile)
+  }
+
+  function uploadFile(file) {
+    let url = '/path/to/your/upload/handler/'
+    let formData = new FormData()
+
+    formData.append('file', file)
+
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then(() => { /* Handle success */ })
+    .catch(() => { /* Handle error */ })
+  }
+</script>
+
+<style>
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 80%;
+  margin: 10px auto;
+  padding: 20px;
+}
+.highlight {
+  border-color: purple;
+}
+</style>
+{% endblock %}

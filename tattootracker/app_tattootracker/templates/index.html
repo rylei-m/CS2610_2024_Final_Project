@@ -28,9 +28,21 @@
         <button onclick="checkLogin()">Check Login State</button>
         <button onclick="logout()">Logout</button>
     </div>
+    <a href="{% url 'upload_tattoo' %}" class="btn btn-primary">Upload New Tattoo</a>
+    <!-- Any template, for example, index.html -->
+    <a href="{% url 'view_tattoos' %}" class="btn btn-primary">View Tattoos</a>
+    <!-- Somewhere in your templates where tattoos are listed -->
+<!-- templates/index.html -->
+    {% if tattoo %}
+        <a href="{% url 'edit_tattoo' tattoo.id %}">Edit</a>
+    {% else %}
+        <p>No tattoo available to edit.</p>
+    {% endif %}
+
     {% block content %}
     <!-- Default content if none provided -->
     {% endblock %}
+
     <script src="{% static 'js/auth.js' %}"></script>
 </body>
 </html>

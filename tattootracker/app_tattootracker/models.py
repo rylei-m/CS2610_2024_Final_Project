@@ -11,11 +11,3 @@ class Tattoo(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s tattoo on {self.body_part}"
-
-from django import forms
-from .models import Tattoo
-
-class TattooForm(forms.ModelForm):
-    class Meta:
-        model = Tattoo
-        fields = ['image', 'body_part', 'artist_name', 'date', 'description']
