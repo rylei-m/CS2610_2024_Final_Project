@@ -1,22 +1,36 @@
-{% load static %}
-
+<!-- templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>Welcome Page</title>
+    {% load static %}
+    <style>
+    /* CSS for positioning the sign-in status */
+    .auth {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        background-color: #ffdbf4;
+        padding: 5px;
+        border-radius: 5px;
+        z-index: 1000;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
 </head>
 <body>
-    <h1>Login to Tattoo Tracker App</h1>
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
-    <script src="{% static 'index.js' %}"></script>
+    <h1>Welcome to Tattoo Tracker App!</h1>
+
+    <div id="auth">
+        <button onclick="checkLogin()">Check Login State</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+    {% block content %}
+    <!-- Default content if none provided -->
+    {% endblock %}
+    <script src="{% static 'js/auth.js' %}"></script>
 </body>
 </html>
