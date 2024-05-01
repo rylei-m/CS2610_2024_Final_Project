@@ -1,19 +1,9 @@
-# app_users/views.py
-from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from rest_framework import status, views
-from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from django.shortcuts import redirect, render
-
-# app_users/views.py
-from rest_framework.authtoken.models import Token
-# app_users/views.py
 from django.contrib.auth.models import User
-from django.contrib.auth import login
 from rest_framework import status, views
 from rest_framework.response import Response
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 
 class SignUpView(views.APIView):
@@ -49,7 +39,8 @@ class LogoutView(views.APIView):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class SignUpSuccessView(views.APIView):  # Fixed the class name
+
+class SignUpSuccessView(views.APIView):
     def post(self, request, *args, **kwargs):
         username = request.data.get('username')
         password = request.data.get('password')

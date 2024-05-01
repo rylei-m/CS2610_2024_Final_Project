@@ -1,18 +1,18 @@
-<!-- public_gallery.html -->
 {% extends 'index.html' %}
 {% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Public Gallery</title>
+        <title>Public Gallery</title>
 </head>
 <body>
-    <h1>Public Gallery</h1>
+    <h2>Public Gallery</h2>
     <div class="gallery">
         {% for tattoo in tattoos %}
             <img src="{{ tattoo.image.url }}" alt="{{ tattoo.title }}">
         {% endfor %}
     </div>
+    <p>  </p>
     {% if not request.user.is_authenticated %}
     <div class="boxes">
         <p>Want to Upload your own Tattoos?</p>

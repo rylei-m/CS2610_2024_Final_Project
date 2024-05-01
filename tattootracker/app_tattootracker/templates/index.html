@@ -1,10 +1,9 @@
-<!-- templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>RM Tattoo Tracker</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
@@ -12,7 +11,7 @@
     <hr style="width:100%;text-align:left;margin-left:0">
 
     <header id="Heading">
-        <h1>T A T A L O G</h1>
+        <h1>Tattoo Tracker</h1>
     </header>
     <hr style="width:100%;text-align:left;margin-left:0">
     <nav id="auth" class="auth">
@@ -25,24 +24,21 @@
     <div class="navigation">
         <a href="{% url 'home' %}" class="btn">Home</a>
         <a href="{% url 'upload_tattoo' %}" class="btn btn-primary">Upload New Tattoo</a>
-        <!-- Any template, for example, index.html -->
         <a href="{% url 'view_tattoos' %}" class="btn btn-primary">View Tattoos</a>
         <a href="{% url 'public_gallery' %}" class="btn btn-primary">Public Gallery</a>
     </div>
     <hr style="width:100%;text-align:left;margin-left:0">
-
-    <!-- Somewhere in your templates where tattoos are listed -->
-<!-- templates/index.html -->
     {% if tattoo %}
         <a href="{% url 'edit_tattoo' tattoo.id %}">View Details and Edit</a>
     {% else %}
-        <p>No tattoo available to edit.</p>
+        <p></p>
     {% endif %}
-
     {% block content %}
-    <!-- Default content if none provided -->
     {% endblock %}
 
     <script src="{% static 'js/auth.js' %}"></script>
 </body>
+<footer>
+    <h3>By: Rylei Mindrum | A02352206</h3>
+</footer>
 </html>

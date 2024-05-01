@@ -1,16 +1,18 @@
-
-<!-- app_tattootracker/templates/login.html-->
 {% extends 'index.html' %}
-
 {% block content %}
-
-<h1>Login to Tattoo Tracker App</h1>
+<div class="temps">
+<h2>Login</h2>
 <form id="loginForm" onsubmit="login(event)">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     <button type="submit">Login</button>
+    <p>  </p>
+    <div class="boxes">
+        <p>Dont Have An Account?</p>
+        <button class="btn" onclick="location.href='{% url 'signup' %}'">Sign Up</button>
+    </div>
 </form>
-
 {% endblock %}
+</div>

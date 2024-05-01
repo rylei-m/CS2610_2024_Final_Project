@@ -1,17 +1,17 @@
-<!-- view_tattoos.html -->
 {% extends 'index.html' %}
 {% block content %}
 
 {% if tattoos %}
     {% for tattoo in tattoos %}
-        <div>
+        <h2>My Tattoos</h2>
+        <div class="viewer">
             <img src="{{ tattoo.image.url }}" alt="Tattoo">
             <p>{{ tattoo.description }}</p>
             <a href="{% url 'edit_tattoo' tattoo.id %}">Edit</a>
         </div>
     {% endfor %}
 {% else %}
-    <p>No tattoos available to edit.</p>
+    <p></p>
 {% endif %}
 {% endblock %}
 

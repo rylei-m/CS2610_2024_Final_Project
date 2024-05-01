@@ -1,6 +1,6 @@
-# app_tattootracker/forms.py
 from django import forms
 from .models import Tattoo
+
 
 class TattooForm(forms.ModelForm):
     class Meta:

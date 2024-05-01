@@ -29,6 +29,23 @@ a {
     color: #FFFFFF; /* White text color for links */
 }
 
+footer {
+    background-color: transparent; /* Gradient from dark red to black */
+    color: #C0C0C0; /* Silver text for contrast */
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    left: 10px;
+    bottom: 10px;
+    padding: 0px;
+    border-radius: 0px;
+    border-color: #FFFFFF;
+    z-index: 1000;
+    text-align: center;
+    margin-bottom: 5px;
+
+}
+
 .auth {
     background-color: transparent; /* Gradient from dark red to black */
     color: #C0C0C0; /* Silver text for contrast */
@@ -62,8 +79,8 @@ a {
     display: inline-block;
     padding: 8px 16px;
     margin: 10px;
-    background-color: #FF0000; /* Red background for buttons */
-    color: #FFFFFF; /* White text color for buttons */
+    background-color: #000000; /* Red background for buttons */
+    color: #C0C0C0; /* White text color for buttons */
     text-align: center;
     cursor: pointer;
     border-radius: 0px;
@@ -85,7 +102,7 @@ a {
     text-align: center;
 }
 
-.boxes {
+.boxes, .deletion, .uploader, .viewer, .editor, .gallery, logining {
     border: 1px solid #FFFFFF;  /* Ensure border is visible */    background-image: radial-gradient(#750000, #000000); /* Gradient from dark red to black */
     color: #C0C0C0; /* Silver text for contrast */
     text-align: center;
@@ -93,6 +110,12 @@ a {
     padding: 10px;
     width: fit-content;
     margin: auto;
+}
+
+
+.gallery-image {
+    width: 500px; /* Adjust the width as needed */
+    height: auto; /* This will maintain the aspect ratio */
 }
 
 .gallery{
@@ -129,7 +152,7 @@ a {
     flex: 0 0 100%; /* Do not grow, do not shrink, and basis is auto */
     width: 100%; /* Each image takes up full width of its container */
     object-fit: cover; /* Cover the area of the box without distorting aspect ratio */
-    height: 400px;; /* Set a fixed height to ensure all images are the same size */
+    height: 580px; /* Set a fixed height to ensure all images are the same size */
     margin-bottom: 20px;
 }
 

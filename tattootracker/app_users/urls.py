@@ -1,5 +1,3 @@
-# app_users/urls.py
-# app_users/urls.py
 from django.urls import path
 from .views import SignUpView, LoginView, LogoutView
 

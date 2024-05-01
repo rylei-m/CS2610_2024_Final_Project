@@ -1,20 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from .forms import TattooForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Tattoo
 
-# Create your views here.
+
 def home(request):
     tattoo = Tattoo.objects.first()
     return render(request, 'base.html', {'tattoo': tattoo})
 
-# app_tattootracker/views.py
-from django.shortcuts import render
 
 def signup_success(request):
     return render(request, 'signup_success.html')
 
-
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def upload_tattoo(request):
@@ -22,36 +20,23 @@ def upload_tattoo(request):
         form = TattooForm(request.POST, request.FILES)
         if form.is_valid():
             tattoo = form.save(commit=False)
-            tattoo.user = request.user  # Assign the actual user object, not the lazy object
+            tattoo.user = request.user
             if 'is_public' in request.POST:
                 tattoo.is_public = True
             tattoo.save()
-            return redirect('view_tattoos')  # Redirect to the user's tattoos
+            return redirect('view_tattoos')
     else:
         form = TattooForm()
     return render(request, 'upload_tattoo.html', {'form': form})
 
 
-# views.py
-from django.shortcuts import render
-from .models import Tattoo
-
-from django.shortcuts import redirect
-
-
 def view_tattoos(request):
     if request.user.is_authenticated:
         tattoos = Tattoo.objects.filter(user=request.user)
-        # Render the page with user's tattoos
         return render(request, 'view_tattoos.html', {'tattoos': tattoos})
     else:
-        # Redirect the user to the sign up page or public gallery
-        return redirect('public_gallery')  # Replace 'public_gallery' with the name of your public gallery URL
+        return redirect('public_gallery')
 
-from django.http import JsonResponse
-from .models import Tattoo
-from .forms import TattooForm
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def upload_handler(request):
@@ -66,10 +51,6 @@ def upload_handler(request):
             return JsonResponse({'error': 'Form is not valid'}, status=400)
     return JsonResponse({'error': 'This method is not allowed'}, status=405)
 
-# app_tattootracker/views.py
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Tattoo
-from .forms import TattooForm
 
 def edit_tattoo(request, tattoo_id):
     tattoo = get_object_or_404(Tattoo, pk=tattoo_id)
@@ -77,40 +58,28 @@ def edit_tattoo(request, tattoo_id):
         form = TattooForm(request.POST, request.FILES, instance=tattoo)
         if form.is_valid():
             form.save()
-            return redirect('view_tattoos')  # Redirect to a page where the user can see their tattoos
+            return redirect('view_tattoos')
     else:
         form = TattooForm(instance=tattoo)
     return render(request, 'edit_tattoo.html', {'form': form, 'tattoo': tattoo})
 
-# app_tattootracker/views.py
-
-from django.shortcuts import render
 
 def home_view(request):
-    # Add any context or operations needed for the homepage
-    return render(request, 'base.html')  # Ensure you have a template named 'home.html'
+    return render(request, 'base.html')
 
-
-from django.shortcuts import render
-from .models import Tattoo
 
 def public_gallery(request):
     public_tattoos = Tattoo.objects.filter(is_public=True)
     return render(request, 'public_gallery.html', {'tattoos': public_tattoos})
 
-# app_tattootracker/views.py
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tattoo
 
 def delete_tattoo(request, tattoo_id):
     tattoo = get_object_or_404(Tattoo, pk=tattoo_id)
     if request.method == 'POST':
         tattoo.delete()
-        return redirect('view_tattoos')  # Redirect to the view_tattoos page after deletion
+        return redirect('view_tattoos')
     return render(request, 'confirm_delete.html', {'tattoo': tattoo})
 
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Tattoo
 
 def delete_tattoo_confirm(request, tattoo_id):
     tattoo = get_object_or_404(Tattoo, pk=tattoo_id)
