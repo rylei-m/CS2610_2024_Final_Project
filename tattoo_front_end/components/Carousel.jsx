@@ -1,8 +1,14 @@
 import React from 'react';
-import './Carousel.css'; // Import CSS styles for the carousel
+import { StateContext } from './StateContext'; // Import the StateContext
 
 class Carousel extends React.Component {
+    // Set up contextType to access the context
+    static contextType = StateContext;
+
     render() {
+        // Access state and dispatch from the context
+        const { state, dispatch } = this.context;
+
         return (
             <div className="carousel-inner" id="carouselSlides">
                 <div className="slides">

@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from './StateContext';
 
-function MyTattoos({ tattoos }) {
+const MyComponent = () => {
+  const { state, dispatch } = useContext(StateContext);
+
+  // Now you can use state and dispatch here
+
+  return (
+    // Your component JSX
+  );
+};
+
+export default MyComponent;
+
+export function MyTattoos({ tattoos }) {
   return (
     <div>
       {tattoos.length > 0 ? (
@@ -21,5 +34,3 @@ function MyTattoos({ tattoos }) {
     </div>
   );
 }
-
-export default MyTattoos;

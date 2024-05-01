@@ -1,10 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { StateProvider } from './StateContext';
+import App from './App';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ReactDOM.render(
+  <StateProvider>
     <App />
-  </React.StrictMode>,
-)
+  </StateProvider>,
+  document.getElementById('root')
+);

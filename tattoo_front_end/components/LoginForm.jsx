@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from './StateContext';
 
-function LoginForm() {
+const MyComponent = () => {
+  const { state, dispatch } = useContext(StateContext);
+
+  // Now you can use state and dispatch here
+
+  return (
+    // Your component JSX
+  );
+};
+
+export default MyComponent;
+
+export function LoginForm() {
   const login = (event) => {
     event.preventDefault();
     // Add login logic here
@@ -24,5 +37,3 @@ function LoginForm() {
     </div>
   );
 }
-
-export default LoginForm;

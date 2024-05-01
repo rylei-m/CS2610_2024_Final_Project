@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from './StateContext';
 
-function EditTattoo({ form, tattoo }) {
+const MyComponent = () => {
+  const { state, dispatch } = useContext(StateContext);
+
+  // Now you can use state and dispatch here
+
+  return (
+    // Your component JSX
+  );
+};
+
+export default MyComponent;
+
+export function EditTattoo({ form, tattoo }) {
   const handleSubmit = (event) => {
     // Handle form submission logic
     event.preventDefault();
@@ -28,5 +41,3 @@ function EditTattoo({ form, tattoo }) {
     </div>
   );
 }
-
-export default EditTattoo;

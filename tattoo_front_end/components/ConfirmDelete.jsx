@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from './StateContext';
 
-function ConfirmDelete({ tattoo }) {
+const MyComponent = () => {
+  const { state, dispatch } = useContext(StateContext);
+
+  // Now you can use state and dispatch here
+
+  return (
+    // Your component JSX
+  );
+};
+
+export default MyComponent;
+
+export function ConfirmDelete({ tattoo }) {
   const handleDelete = () => {
     // Handle deletion logic
   };
@@ -16,5 +29,3 @@ function ConfirmDelete({ tattoo }) {
     </div>
   );
 }
-
-export default ConfirmDelete;
