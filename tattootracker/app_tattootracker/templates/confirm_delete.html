@@ -1,0 +1,21 @@
+<!-- confirm_delete.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+</head>
+<body>
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete the tattoo "{{ tattoo.title }}"?</p>
+    <form action="{% url 'delete_tattoo_confirm' tattoo.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'edit_tattoo' tattoo.id %}">Cancel</a>
+    </form>
+</body>
+</html>
+{% endblock %}

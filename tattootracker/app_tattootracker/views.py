@@ -14,19 +14,23 @@ def signup_success(request):
     return render(request, 'signup_success.html')
 
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def upload_tattoo(request):
     if request.method == 'POST':
         form = TattooForm(request.POST, request.FILES)
         if form.is_valid():
             tattoo = form.save(commit=False)
-            tattoo.user = request.user
+            tattoo.user = request.user  # Assign the actual user object, not the lazy object
             if 'is_public' in request.POST:
                 tattoo.is_public = True
             tattoo.save()
-            return redirect('view_tattoos')  # Redirect to a success page or profile
+            return redirect('view_tattoos')  # Redirect to the user's tattoos
     else:
         form = TattooForm()
     return render(request, 'upload_tattoo.html', {'form': form})
+
 
 # views.py
 from django.shortcuts import render
@@ -93,3 +97,24 @@ from .models import Tattoo
 def public_gallery(request):
     public_tattoos = Tattoo.objects.filter(is_public=True)
     return render(request, 'public_gallery.html', {'tattoos': public_tattoos})
+
+# app_tattootracker/views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Tattoo
+
+def delete_tattoo(request, tattoo_id):
+    tattoo = get_object_or_404(Tattoo, pk=tattoo_id)
+    if request.method == 'POST':
+        tattoo.delete()
+        return redirect('view_tattoos')  # Redirect to the view_tattoos page after deletion
+    return render(request, 'confirm_delete.html', {'tattoo': tattoo})
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Tattoo
+
+def delete_tattoo_confirm(request, tattoo_id):
+    tattoo = get_object_or_404(Tattoo, pk=tattoo_id)
+    if request.method == 'POST':
+        tattoo.delete()
+        return redirect('view_tattoos')
+    return render(request, 'confirm_delete.html', {'tattoo': tattoo})

@@ -34,7 +34,7 @@
     <!-- Somewhere in your templates where tattoos are listed -->
 <!-- templates/index.html -->
     {% if tattoo %}
-        <a href="{% url 'edit_tattoo' tattoo.id %}">Edit</a>
+        <a href="{% url 'edit_tattoo' tattoo.id %}">View Details and Edit</a>
     {% else %}
         <p>No tattoo available to edit.</p>
     {% endif %}
