@@ -60,3 +60,11 @@ def edit_tattoo(request, tattoo_id):
     else:
         form = TattooForm(instance=tattoo)
     return render(request, 'edit_tattoo.html', {'form': form, 'tattoo': tattoo})
+
+# app_tattootracker/views.py
+
+from django.shortcuts import render
+
+def home_view(request):
+    # Add any context or operations needed for the homepage
+    return render(request, 'index.html')  # Ensure you have a template named 'home.html'

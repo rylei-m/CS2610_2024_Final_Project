@@ -6,31 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
     {% load static %}
-    <style>
-    /* CSS for positioning the sign-in status */
-    .auth {
-        position: fixed;
-        right: 10px;
-        top: 10px;
-        background-color: #ffdbf4;
-        padding: 5px;
-        border-radius: 5px;
-        z-index: 1000;
-        }
-    </style>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
 </head>
 <body>
-    <h1>Welcome to Tattoo Tracker App!</h1>
-
-    <div id="auth">
+    <header id="Heading">
+        <h1>Welcome to Tattoo Tracker App!</h1>
+    </header>
+    <nav id="auth" class="auth">
+        <button class="btn" onclick="location.href='{% url 'login' %}'">Login</button>
+        <button class="btn" onclick="location.href='{% url 'signup' %}'">Sign Up</button>
         <button onclick="checkLogin()">Check Login State</button>
         <button onclick="logout()">Logout</button>
+    </nav>
+    <div class="navigation">
+        <a href="{% url 'home' %}" class="btn">Home</a>
+        <a href="{% url 'upload_tattoo' %}" class="btn btn-primary">Upload New Tattoo</a>
+        <!-- Any template, for example, index.html -->
+        <a href="{% url 'view_tattoos' %}" class="btn btn-primary">View Tattoos</a>
     </div>
-    <a href="{% url 'upload_tattoo' %}" class="btn btn-primary">Upload New Tattoo</a>
-    <!-- Any template, for example, index.html -->
-    <a href="{% url 'view_tattoos' %}" class="btn btn-primary">View Tattoos</a>
     <!-- Somewhere in your templates where tattoos are listed -->
 <!-- templates/index.html -->
     {% if tattoo %}
