@@ -5,4 +5,4 @@ from .models import Tattoo
 class TattooForm(forms.ModelForm):
     class Meta:
         model = Tattoo
-        fields = ['image', 'body_part', 'artist_name', 'date', 'description']
+        fields = ['image', 'body_part', 'artist_name', 'date', 'description', 'is_public']

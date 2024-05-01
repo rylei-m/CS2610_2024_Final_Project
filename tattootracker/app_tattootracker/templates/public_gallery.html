@@ -13,10 +13,13 @@
             <img src="{{ tattoo.image.url }}" alt="{{ tattoo.title }}">
         {% endfor %}
     </div>
+    {% if not request.user.is_authenticated %}
     <div class="boxes">
         <p>Want to Upload your own Tattoos?</p>
         <button class="btn" onclick="location.href='{% url 'login' %}'">Login</button>
+        <button class="btn" onclick="location.href='{% url 'signup' %}'">Sign Up</button>
     </div>
+    {% endif %}
 </body>
 {% endblock %}
 </html>

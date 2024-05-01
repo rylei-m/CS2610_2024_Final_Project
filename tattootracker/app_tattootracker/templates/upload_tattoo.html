@@ -7,6 +7,8 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <label for="id_is_public">Make Public:</label>
+        <input type="checkbox" id="id_is_public" name="is_public">
         <button type="submit">Upload Tattoo</button>
     </form>
 </div>

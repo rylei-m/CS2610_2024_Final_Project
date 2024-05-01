@@ -22,6 +22,8 @@ from app_tattootracker.views import upload_tattoo
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = 'project_tattootracker'
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),

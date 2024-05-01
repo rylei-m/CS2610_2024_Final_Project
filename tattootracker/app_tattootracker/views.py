@@ -7,12 +7,21 @@ def home(request):
     tattoo = Tattoo.objects.first()
     return render(request, 'base.html', {'tattoo': tattoo})
 
+# app_tattootracker/views.py
+from django.shortcuts import render
+
+def signup_success(request):
+    return render(request, 'signup_success.html')
+
+
 def upload_tattoo(request):
     if request.method == 'POST':
         form = TattooForm(request.POST, request.FILES)
         if form.is_valid():
             tattoo = form.save(commit=False)
             tattoo.user = request.user
+            if 'is_public' in request.POST:
+                tattoo.is_public = True
             tattoo.save()
             return redirect('view_tattoos')  # Redirect to a success page or profile
     else:
@@ -24,6 +33,7 @@ from django.shortcuts import render
 from .models import Tattoo
 
 from django.shortcuts import redirect
+
 
 def view_tattoos(request):
     if request.user.is_authenticated:
