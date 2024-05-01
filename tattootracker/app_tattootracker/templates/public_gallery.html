@@ -1,0 +1,22 @@
+<!-- public_gallery.html -->
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Gallery</title>
+</head>
+<body>
+    <h1>Public Gallery</h1>
+    <div class="gallery">
+        {% for tattoo in tattoos %}
+            <img src="{{ tattoo.image.url }}" alt="{{ tattoo.title }}">
+        {% endfor %}
+    </div>
+    <div class="boxes">
+        <p>Want to Upload your own Tattoos?</p>
+        <button class="btn" onclick="location.href='{% url 'login' %}'">Login</button>
+    </div>
+</body>
+{% endblock %}
+</html>

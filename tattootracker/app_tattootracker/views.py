@@ -23,9 +23,16 @@ def upload_tattoo(request):
 from django.shortcuts import render
 from .models import Tattoo
 
+from django.shortcuts import redirect
+
 def view_tattoos(request):
-    tattoos = Tattoo.objects.filter(user=request.user)  # Assuming your Tattoo model has a user field
-    return render(request, 'view_tattoos.html', {'tattoos': tattoos})
+    if request.user.is_authenticated:
+        tattoos = Tattoo.objects.filter(user=request.user)
+        # Render the page with user's tattoos
+        return render(request, 'view_tattoos.html', {'tattoos': tattoos})
+    else:
+        # Redirect the user to the sign up page or public gallery
+        return redirect('public_gallery')  # Replace 'public_gallery' with the name of your public gallery URL
 
 from django.http import JsonResponse
 from .models import Tattoo
@@ -68,3 +75,11 @@ from django.shortcuts import render
 def home_view(request):
     # Add any context or operations needed for the homepage
     return render(request, 'base.html')  # Ensure you have a template named 'home.html'
+
+
+from django.shortcuts import render
+from .models import Tattoo
+
+def public_gallery(request):
+    public_tattoos = Tattoo.objects.filter(is_public=True)
+    return render(request, 'public_gallery.html', {'tattoos': public_tattoos})

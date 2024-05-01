@@ -95,6 +95,10 @@ a {
     margin: auto;
 }
 
+.gallery{
+    flex-wrap: wrap;
+    height: auto;
+}
 .carousel-inner {
     overflow: hidden;
     position: relative;

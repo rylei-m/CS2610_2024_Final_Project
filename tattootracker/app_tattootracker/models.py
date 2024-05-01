@@ -8,6 +8,6 @@ class Tattoo(models.Model):
     artist_name = models.CharField(max_length=100)
     date = models.DateField()
     description = models.TextField()
-
+    is_public = models.BooleanField(default=False)  # Add this field
     def __str__(self):
         return f"{self.user.username}'s tattoo on {self.body_part}"
