@@ -7,24 +7,29 @@
     <title>Welcome Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
 </head>
 <body>
+    <hr style="width:100%;text-align:left;margin-left:0">
+
     <header id="Heading">
-        <h1>Welcome to Tattoo Tracker App!</h1>
+        <h1>T A T A L O G</h1>
     </header>
+    <hr style="width:100%;text-align:left;margin-left:0">
     <nav id="auth" class="auth">
         <button class="btn" onclick="location.href='{% url 'login' %}'">Login</button>
         <button class="btn" onclick="location.href='{% url 'signup' %}'">Sign Up</button>
         <button onclick="checkLogin()">Check Login State</button>
         <button onclick="logout()">Logout</button>
     </nav>
+    <hr style="width:100%;text-align:left;margin-left:0">
     <div class="navigation">
         <a href="{% url 'home' %}" class="btn">Home</a>
         <a href="{% url 'upload_tattoo' %}" class="btn btn-primary">Upload New Tattoo</a>
         <!-- Any template, for example, index.html -->
         <a href="{% url 'view_tattoos' %}" class="btn btn-primary">View Tattoos</a>
     </div>
+    <hr style="width:100%;text-align:left;margin-left:0">
+
     <!-- Somewhere in your templates where tattoos are listed -->
 <!-- templates/index.html -->
     {% if tattoo %}

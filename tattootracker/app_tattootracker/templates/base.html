@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="carousel-inner" id="carouselSlides">
+    <div class="slides">
+        <img src="{% static 'images/stock1.jpg' %}" alt="Image 1">
+        <img src="{% static 'images/stock2.jpg' %}" alt="Image 2">
+        <img src="{% static 'images/stock3.jpg' %}" alt="Image 3">
+        <img src="{% static 'images/stock1.jpg' %}" alt="Image 4">
+        <img src="{% static 'images/stock2.jpg' %}" alt="Image 5">
+        <img src="{% static 'images/stock3.jpg' %}" alt="Image 6">
+    </div>
+    <div class="buttons">
+        <button onclick="prevSlide()">Prev</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+</div>
+<script src="{% static 'js/carousel.js' %}"></script>
+<!-- Any additional content specific to the home page -->
+{% endblock %}

@@ -1,27 +1,40 @@
 /* index.css */
+
 body {
-    background-color: #000000; /* Solid black background for the body */
-    font-family: Arial, sans-serif; /* Arial or sans-serif */
+    background-color: #000000; /* Gradient from dark red to black */
+    font-family: "Snell Roundhand", cursive ; /* Arial or sans-serif */
     color: #FF0000; /* Red text color for general text */
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
+
 h1 {
-    background-image: linear-gradient(to bottom, #750000, #000000); /* Gradient from dark red to black */
+    background-image: radial-gradient(#750000, #000000); /* Gradient from dark red to black */
     color: #C0C0C0; /* Silver text for contrast */
     padding: 50px 20px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
+h2 {
+    background-image: radial-gradient(#750000, #000000); /* Gradient from dark red to black */
+    color: #C0C0C0; /* Silver text for contrast */
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #FFFFFF; /* White text color for links */
+}
 
 .auth {
     background-color: transparent; /* Gradient from dark red to black */
     color: #C0C0C0; /* Silver text for contrast */
     position: fixed;
     right: 10px;
-    top: 25px;
+    top: 30px;
     padding: 5px;
     border-radius: 0px;
     border-color: #FFFFFF;
@@ -39,10 +52,10 @@ h1 {
 }
 
 .navigation {
-    background-color: #FFFFFF;
-    padding: 10px 20px;
+    background-image: linear-gradient(to top, #750000, #000000); /* Gradient from dark red to black */
+    padding: 0px 0px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .btn, a.btn {
@@ -64,4 +77,84 @@ h1 {
     color: #000000; /* Black text on hover */
 }
 
+.temps {
+    padding: 0px;
+    margin-bottom: 10px;
+    background-color: black;
+    height: 300px;
+    text-align: center;
+}
 
+.boxes {
+    border: 1px solid #FFFFFF;  /* Ensure border is visible */    background-image: radial-gradient(#750000, #000000); /* Gradient from dark red to black */
+    color: #C0C0C0; /* Silver text for contrast */
+    text-align: center;
+    /*margin-top: 20px;*/
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+.carousel-inner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: calc(100% * 6); /* Adjust based on the number of images */
+}
+
+.slides img {
+    width: calc(100% / 6); /* Ensure this matches the number of images */
+    flex-shrink: 0;
+    object-fit: cover;
+    height: 500px;
+}
+
+
+.carousel-inner {
+    display: flex; /* Aligns children (images) in a row */
+    flex-wrap: nowrap;
+    transition: transform 0.3s ease;
+}
+
+.carousel-inner img {
+    flex: 0 0 100%; /* Do not grow, do not shrink, and basis is auto */
+    width: 100%; /* Each image takes up full width of its container */
+    object-fit: cover; /* Cover the area of the box without distorting aspect ratio */
+    height: 400px;; /* Set a fixed height to ensure all images are the same size */
+    margin-bottom: 20px;
+}
+
+.buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Positioning buttons */
+.carousel button:nth-child(2) { /* Assuming Prev button */
+    left: 10px;
+}
+
+.carousel button:nth-child(3) { /* Assuming Next button */
+    right: 10px;
+}

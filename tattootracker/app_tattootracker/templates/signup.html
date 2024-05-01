@@ -2,12 +2,19 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>Sign Up for Tattoo Tracker App</h1>
+<div class="temps">
+<h2>Create An Account</h2>
 <form id="signupForm" onsubmit="signup(event)">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     <button type="submit">Sign Up</button>
+    <p>  </p>
+    <div class="boxes">
+        <p>Already have an account?</p>
+        <button class="btn" onclick="location.href='{% url 'login' %}'">Login</button>
+    </div>
 </form>
 {% endblock %}
+</div>

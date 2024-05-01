@@ -136,6 +136,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ensure your project has a media 
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '/app_tattootracker/static'),  # This directory should contain your 'images' folder
+]
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

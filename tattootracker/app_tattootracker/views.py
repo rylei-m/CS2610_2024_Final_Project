@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 def home(request):
     tattoo = Tattoo.objects.first()
-    return render(request, 'index.html', {'tattoo': tattoo})
+    return render(request, 'base.html', {'tattoo': tattoo})
 
 def upload_tattoo(request):
     if request.method == 'POST':
@@ -67,4 +67,4 @@ from django.shortcuts import render
 
 def home_view(request):
     # Add any context or operations needed for the homepage
-    return render(request, 'index.html')  # Ensure you have a template named 'home.html'
+    return render(request, 'base.html')  # Ensure you have a template named 'home.html'
